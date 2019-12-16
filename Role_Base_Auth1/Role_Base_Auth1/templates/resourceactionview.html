@@ -1,0 +1,15 @@
+<div class="control-group">
+          <div class="controls">
+            <table>
+            <th> Name</th>
+            <th> Mail ID</th>
+            <th> Role </th>
+{% for data1 in data %}
+ <tr><td> {{ data1.user }}</td>
+  <td>{{ data1.email }}</td>
+  <td>{{data1.role}}</td></tr>
+{% endfor %}
+</table>
+
+          </div>
+      </div>

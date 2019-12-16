@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="control-group">
+          <div class="controls">
+            <table class="table table-striped">
+            <th> Role</th>
+            <th> Actions</th>
+            <th> Resources </th>
+{% for data1 in data %}
+ <tr><td> {{ data1.role_name }}</td>
+  <td>{{ data1.actions }}</td>
+  <td>{{data1.resources}}</td></tr>
+{% endfor %}
+</table>
+
+          </div>
+      </div>
+{% endblock %}

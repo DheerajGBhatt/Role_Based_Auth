@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}<li>
+      {% endfor %}
+  </ul>
+{% endif %}
+    <div class="container">
+    <form method="POST" class="post-form">  
+            {% csrf_token %}  
+    <table>
+       <tr><td>{{form}}</td></tr>
+       <tr><td></td><td><button style="color:blue" class="btn btn-outline-info" type="submit">Save</button></td></tr>
+    </table> 
+              
+    </form>  
+   </div>
+{% endblock %}
