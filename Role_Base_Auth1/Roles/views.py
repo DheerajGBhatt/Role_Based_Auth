@@ -39,9 +39,8 @@ def roles_action(request):
         return render(request,"createroles.html",{'form':roles}) 
     else:
             form = AuthenticationForm()
-            return render(request = request,
-                    template_name = "login.html",
-                    context={"form":form})
+            return redirect('login')
+        
 def roles_resource(request):  
     if request.user.is_authenticated:      
         if request.method == "POST":  

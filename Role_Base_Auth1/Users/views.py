@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
+from django.contrib.auth import authenticate, login ,logout
+from django.contrib.auth.views import *
+from django.shortcuts import redirect
 from Users.forms.loginform import UserForm
 from Users.forms.user_role import UserRoleForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from Roles.models import *
 from Users.models import *
 # Create your views here.
@@ -11,7 +15,7 @@ from Users.models import *
 def logout_request(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
-    return redirect("homepage")
+    return redirect("home")
 
 def register(request):
     logout(request)
@@ -28,7 +32,7 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}")
-                return redirect('home')
+                return redirect('home')            
             else:
                 messages.error(request, "Invalid username or password.")
         else:
@@ -39,18 +43,16 @@ def login_request(request):
                     context={"form":form})
 
 def home(request):
-        #if request.user.is_authenticated:   
-        return render (request = request,
+    if request.user.is_authenticated:   
+        return render(request = request,
                     template_name = "home.html",
-                    context={"form":"hi"})
-        #else:
-        #form = AuthenticationForm()
-        #return render(request = request,
-        #            template_name = "login.html",
-        #            context={"form":form})
+                    context={"form":request.user})
+    else:
+        form = AuthenticationForm()
+        return redirect('login')
 
 def create(request):  
-        #if request.user.is_authenticated:   
+    if request.user.is_authenticated:   
         if request.method == "POST":  
             user = UserForm(request.POST) 
             user.save() 
@@ -63,12 +65,10 @@ def create(request):
         else:   
             user = UserForm()  
         return render(request,"createuser.html",{'form':user}) 
-        #else:
-        #form = AuthenticationForm()
-        #return render(request = request,
-        #            template_name = "login.html",
-        #            context={"form":form}) 
-
+    else:
+        form = AuthenticationForm()
+        return redirect('login')
+    
 def user_view(request):
     if request.user.is_authenticated:
             user_data = User.objects.all()
@@ -82,9 +82,7 @@ def user_view(request):
             return render(request, 'userview.html', {'data': user_data})
     else:
         form = AuthenticationForm()
-        return render(request = request,
-                    template_name = "login.html",
-                    context={"form":form})
+        return redirect('login')
 
 
 def user_role(request):  
@@ -103,6 +101,4 @@ def user_role(request):
         return render(request,"createroles.html",{'form':roles})  
     else:
         form = AuthenticationForm()
-        return render(request = request,
-                    template_name = "login.html",
-                    context={"form":form})
+        return redirect('login')
