@@ -14,8 +14,9 @@ def create(request):
             roles = RolesForm(request.POST)  
             if roles.is_valid():  
               try:
-                
                 roles.save()
+                messages.info(request, f"role created")
+                return redirect('home')
               except:           
                messages.error(request, "user not created.")  
         else:   
