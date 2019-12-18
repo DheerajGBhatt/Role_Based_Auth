@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from Roles.models import *
 from Users.models import *
+from operations import *
 # Create your views here.
 
 def logout_request(request):
@@ -23,6 +24,7 @@ def register(request):
     return redirect("homepage")
 
 def login_request(request):
+    
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -38,15 +40,19 @@ def login_request(request):
         else:
             messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
+    form.operation = operations(request.user.id)
     return render(request = request,
                     template_name = "login.html",
                     context={"form":form})
 
 def home(request):
-    if request.user.is_authenticated:   
+    if request.user.is_authenticated:
+        res=request.user
+        print(request.user.id)
+        res.operation = operations(request.user.id)   
         return render(request = request,
                     template_name = "home.html",
-                    context={"form":request.user})
+                    context={"form":res})
     else:
         form = AuthenticationForm()
         return redirect('login')
@@ -61,9 +67,10 @@ def create(request):
                 user.save()
                
               except:  
-                     return redirect('/')                
+                     messages.error(request, "user not created.")              
         else:   
             user = UserForm()  
+        user.operation = operations(request.user.id) 
         return render(request,"createuser.html",{'form':user}) 
     else:
         form = AuthenticationForm()
@@ -79,6 +86,7 @@ def user_view(request):
                     rstr = rstr+str(j.roles_id.role_name)+','
                 print(rstr)
                 i.roles=rstr
+            user_data.operation = operations(request.user.id) 
             return render(request, 'userview.html', {'data': user_data})
     else:
         form = AuthenticationForm()
@@ -97,7 +105,8 @@ def user_role(request):
                   user_roles.objects.create(user_id=users,roles_id=roles)  
                
         else:   
-            roles = UserRoleForm()  
+            roles = UserRoleForm()
+        roles.operation = operations(request.user.id)       
         return render(request,"createroles.html",{'form':roles})  
     else:
         form = AuthenticationForm()

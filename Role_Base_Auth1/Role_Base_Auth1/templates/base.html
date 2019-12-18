@@ -17,12 +17,12 @@
     {% block body %}  <!-- HERE -->
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-          <b><h3><font color="white">Login</font><h3></b>
+          <b><h3><font color="white">Role Based Authentication</font><h3></b>
           <button class="navbar-toggler" type="button" data-toggle="collapse-show" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           {% if not request.user.username %}
-          pass
+          
           {% else %}
           {% include "nav.html" %}
           {%endif%}

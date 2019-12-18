@@ -6,13 +6,27 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
           <a class="dropdown-item" href="{% url 'home' %}">Home</a>
+          {% if 'User_view' in form.operation%}
           <a class="dropdown-item" href="{% url 'userview' %}">Users</a>
+          {% endif %}
+          {% if 'Roles_view' in form.operation %}
           <a class="dropdown-item" href="{% url 'roleview' %}">Roles</a>
+          {% endif %}
+          {% if 'Create_user' in form.operation %}
           <a class="dropdown-item" href="{% url 'createuser' %}">Create Users</a>
+          {% endif %}
+          {% if 'Create_roles' in form.operation %}
           <a class="dropdown-item" href="{% url 'createrole' %}">Create Roles</a>
+          {% endif %}
+          {% if 'Assign_user_roles' in form.operation %}
           <a class="dropdown-item" href="{% url 'assignrole' %}">Assign Roles</a>
+          {% endif %}
+          {% if 'Assign_roles_resource' in form.operation %}
           <a class="dropdown-item" href="{% url 'assignresource'%}">Assign Resources</a>
+          {% endif %}
+          {% if 'Assign_roles_action' in form.operation %}
           <a class="dropdown-item" href="{% url 'assignaction' %}">Assign Action</a>
+          {% endif %}
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
         </div>
