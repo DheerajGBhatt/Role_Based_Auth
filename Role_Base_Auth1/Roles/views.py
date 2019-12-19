@@ -14,9 +14,8 @@ def create(request):
             roles = RolesForm(request.POST)  
             if roles.is_valid():  
               try:
+                
                 roles.save()
-                messages.info(request, f"role created")
-                return redirect('home')
               except:           
                messages.error(request, "user not created.")  
         else:   
@@ -34,12 +33,13 @@ def roles_action(request):
             role_id   = request.POST['role']
             action_id = request.POST.getlist('actions') 
             role = Roles.objects.get(id=role_id)
-            for aid in action_id:
+            try:
+               for aid in action_id:
                   action = Action.objects.get(id=aid)
-                  try:
-                     role_action.objects.create(role_id=role,action_id=action)
-                  except:
-                      messages.error(request, "actions not assigned.")
+                  role_action.objects.create(role_id=role,action_id=action)
+               messages.info(request, f"Roles assigned for users")
+            except:
+               messages.error(request, "actions not assigned.")
         else:   
             roles = RolesActionForm()
         roles.operation = operations(request.user.id)   
@@ -55,13 +55,13 @@ def roles_resource(request):
             role_id   = request.POST['role']
             resource_id = request.POST.getlist('resource') 
             role = Roles.objects.get(id=role_id)
-            for aid in resource_id:
+            try:
+               for aid in resource_id:
                   resource = Resources.objects.get(id=aid)
-                  print(resource)
-                  try:
-                     role_resource.objects.create(role_id=role,resource_id=resource)
-                  except:
-                      messages.error(request, "resources not assigned.")  
+                  role_resource.objects.create(role_id=role,resource_id=resource)
+                messages.info(request, f"Resources are assigned for roles")
+            except:
+               messages.error(request, "resources not assigned.")  
                
         else:   
             roles = RolesResourceForm()

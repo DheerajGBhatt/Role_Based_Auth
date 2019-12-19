@@ -65,9 +65,7 @@ def create(request):
             if user.is_valid():  
               try:  
                 user.save()
-                messages.info(request, f"user created")
-                return redirect('home')
-               
+                messages.info(request, "user created")
               except:  
                      messages.error(request, "user not created.")              
         else:   
@@ -102,12 +100,13 @@ def user_role(request):
             user_id   = request.POST['user']
             role_id = request.POST.getlist('roles') 
             users= User.objects.get(id=user_id)
-            for rid in role_id:
+            try:
+               for rid in role_id:
                   roles = Roles.objects.get(id=rid)
-                  try:
-                    user_roles.objects.create(user_id=users,roles_id=roles)
-                  except:  
-                      messages.error(request, "role not assigned.")
+                  user_roles.objects.create(user_id=users,roles_id=roles)
+               messages.info(request, f"Roles assigned for users")
+            except:  
+               messages.error(request, "roles are not assigned for user.")
         else:   
             roles = UserRoleForm()
         roles.operation = operations(request.user.id)       
