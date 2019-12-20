@@ -59,7 +59,7 @@ def roles_resource(request):
                for aid in resource_id:
                   resource = Resources.objects.get(id=aid)
                   role_resource.objects.create(role_id=role,resource_id=resource)
-                messages.info(request, f"Resources are assigned for roles")
+               messages.info(request, f"Resources are assigned for roles")
             except:
                messages.error(request, "resources not assigned.")  
                
