@@ -9,13 +9,13 @@
   {% endfor %}
 {% endif %}
     <div class="container">
-    <form method="POST" class="post-form">  
-            {% csrf_token %}  
+    <form method="POST" class="post-form">
+            {% csrf_token %}
     <table>
-       <tr><td>{{form}}</td></tr>
+        <tr><td>{{form}}</td></tr>
        <tr><td></td><td><button type="submit" style="color:blue" class="btn btn-outline-info">save</button></td></tr>
-    </table> 
-              
-    </form>  
+    </table>
+
+    </form>
 </div>
 {% endblock %}

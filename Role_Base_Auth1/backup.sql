@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.27, for Linux (x86_64)
 --
--- Host: localhost    Database: role_auth
+-- Host: DheerajBhatt.mysql.pythonanywhere-services.com    Database: DheerajBhatt$role_auth
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4
+-- Server version	5.6.40-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,7 @@ CREATE TABLE `Roles_action` (
   `action_name` varchar(200) NOT NULL,
   `description` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,6 @@ CREATE TABLE `Roles_action` (
 
 LOCK TABLES `Roles_action` WRITE;
 /*!40000 ALTER TABLE `Roles_action` DISABLE KEYS */;
-INSERT INTO `Roles_action` VALUES (1,'Create_user','creates user resource'),(2,'Create_roles','creates roles resource'),(3,'Assign_user_roles','assign roles to users'),(4,'Assign_roles_action','assign action to roles'),(5,'Assign_roles_resource','assign resource to roles');
 /*!40000 ALTER TABLE `Roles_action` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,7 +51,7 @@ CREATE TABLE `Roles_resources` (
   `resource_name` varchar(200) NOT NULL,
   `description` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +60,6 @@ CREATE TABLE `Roles_resources` (
 
 LOCK TABLES `Roles_resources` WRITE;
 /*!40000 ALTER TABLE `Roles_resources` DISABLE KEYS */;
-INSERT INTO `Roles_resources` VALUES (1,'User_view','displays all roles assigned to users'),(2,'Roles_view','displays all actions and resources assigned to roles');
 /*!40000 ALTER TABLE `Roles_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +79,7 @@ CREATE TABLE `Roles_role_action` (
   KEY `Roles_role_action_role_id_id_3718c0b8_fk_Roles_roles_id` (`role_id_id`),
   CONSTRAINT `Roles_role_action_action_id_id_68ba072b_fk_Roles_action_id` FOREIGN KEY (`action_id_id`) REFERENCES `Roles_action` (`id`),
   CONSTRAINT `Roles_role_action_role_id_id_3718c0b8_fk_Roles_roles_id` FOREIGN KEY (`role_id_id`) REFERENCES `Roles_roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +88,6 @@ CREATE TABLE `Roles_role_action` (
 
 LOCK TABLES `Roles_role_action` WRITE;
 /*!40000 ALTER TABLE `Roles_role_action` DISABLE KEYS */;
-INSERT INTO `Roles_role_action` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1);
 /*!40000 ALTER TABLE `Roles_role_action` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +107,7 @@ CREATE TABLE `Roles_role_resource` (
   KEY `Roles_role_resource_role_id_id_1cad91d4_fk_Roles_roles_id` (`role_id_id`),
   CONSTRAINT `Roles_role_resource_resource_id_id_1a70d423_fk_Roles_res` FOREIGN KEY (`resource_id_id`) REFERENCES `Roles_resources` (`id`),
   CONSTRAINT `Roles_role_resource_role_id_id_1cad91d4_fk_Roles_roles_id` FOREIGN KEY (`role_id_id`) REFERENCES `Roles_roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +116,6 @@ CREATE TABLE `Roles_role_resource` (
 
 LOCK TABLES `Roles_role_resource` WRITE;
 /*!40000 ALTER TABLE `Roles_role_resource` DISABLE KEYS */;
-INSERT INTO `Roles_role_resource` VALUES (1,1,1),(2,2,1);
 /*!40000 ALTER TABLE `Roles_role_resource` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +131,7 @@ CREATE TABLE `Roles_roles` (
   `role_name` varchar(200) NOT NULL,
   `description` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +140,6 @@ CREATE TABLE `Roles_roles` (
 
 LOCK TABLES `Roles_roles` WRITE;
 /*!40000 ALTER TABLE `Roles_roles` DISABLE KEYS */;
-INSERT INTO `Roles_roles` VALUES (1,'role1','admin'),(2,'role2','admin'),(3,'role3','data entry');
 /*!40000 ALTER TABLE `Roles_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +159,7 @@ CREATE TABLE `Users_user_roles` (
   KEY `Users_user_roles_user_id_id_373d1436_fk_auth_user_id` (`user_id_id`),
   CONSTRAINT `Users_user_roles_roles_id_id_6802d9bf_fk_Roles_roles_id` FOREIGN KEY (`roles_id_id`) REFERENCES `Roles_roles` (`id`),
   CONSTRAINT `Users_user_roles_user_id_id_373d1436_fk_auth_user_id` FOREIGN KEY (`user_id_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +168,6 @@ CREATE TABLE `Users_user_roles` (
 
 LOCK TABLES `Users_user_roles` WRITE;
 /*!40000 ALTER TABLE `Users_user_roles` DISABLE KEYS */;
-INSERT INTO `Users_user_roles` VALUES (1,1,1),(2,1,1),(3,2,1),(4,3,1),(5,1,3);
 /*!40000 ALTER TABLE `Users_user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +183,7 @@ CREATE TABLE `auth_group` (
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +211,7 @@ CREATE TABLE `auth_group_permissions` (
   KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
   CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +238,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,7 +272,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,7 +281,6 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$180000$2HWraqy0UGVp$2o1qfmxU2k8RWAoCqXD8vkZ0zdehJ8ZA47gbHwRiWmQ=',NULL,0,'raj','','','admin@material.com',0,1,'2019-12-15 10:53:50.042930'),(2,'pbkdf2_sha256$180000$KYlLxBGvNWRi$0K7pk+lUUb7/q87NRVMOtOzP5c37ain01PNotUbJUAs=',NULL,0,'ram','','','admin@material.com',0,1,'2019-12-16 02:23:16.831043'),(3,'pbkdf2_sha256$180000$OHFviil9MeQV$Zdim4qPD7HcW0FyU5BpMm2G9Y5yWf+8+jESRcKFgfH8=','2019-12-18 00:09:03.818634',0,'dheeraj','','','admin@material.com',0,1,'2019-12-16 16:23:28.157769');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,7 +300,7 @@ CREATE TABLE `auth_user_groups` (
   KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
   CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
   CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,7 +328,7 @@ CREATE TABLE `auth_user_user_permissions` (
   KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
   CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -368,7 +361,7 @@ CREATE TABLE `django_admin_log` (
   KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,7 +386,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,7 +412,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -428,7 +421,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'Roles','0001_initial','2019-12-15 09:46:13.707890'),(2,'contenttypes','0001_initial','2019-12-15 09:46:13.978240'),(3,'auth','0001_initial','2019-12-15 09:46:14.177181'),(4,'Users','0001_initial','2019-12-15 09:46:14.778274'),(5,'Users','0002_delete_role_resource','2019-12-15 09:46:15.009400'),(6,'Users','0003_auto_20191214_1646','2019-12-15 09:46:15.203342'),(7,'admin','0001_initial','2019-12-15 09:46:15.367102'),(8,'admin','0002_logentry_remove_auto_add','2019-12-15 09:46:15.496576'),(9,'admin','0003_logentry_add_action_flag_choices','2019-12-15 09:46:15.520512'),(10,'contenttypes','0002_remove_content_type_name','2019-12-15 09:46:15.635435'),(11,'auth','0002_alter_permission_name_max_length','2019-12-15 09:46:15.651132'),(12,'auth','0003_alter_user_email_max_length','2019-12-15 09:46:15.676329'),(13,'auth','0004_alter_user_username_opts','2019-12-15 09:46:15.693634'),(14,'auth','0005_alter_user_last_login_null','2019-12-15 09:46:15.745731'),(15,'auth','0006_require_contenttypes_0002','2019-12-15 09:46:15.750223'),(16,'auth','0007_alter_validators_add_error_messages','2019-12-15 09:46:15.767992'),(17,'auth','0008_alter_user_username_max_length','2019-12-15 09:46:15.791961'),(18,'auth','0009_alter_user_last_name_max_length','2019-12-15 09:46:15.818014'),(19,'auth','0010_alter_group_name_max_length','2019-12-15 09:46:15.844335'),(20,'auth','0011_update_proxy_permissions','2019-12-15 09:46:15.865992'),(21,'sessions','0001_initial','2019-12-15 09:46:15.897483');
+INSERT INTO `django_migrations` VALUES (1,'Roles','0001_initial','2019-12-20 01:22:09.151906'),(2,'contenttypes','0001_initial','2019-12-20 01:22:24.485033'),(3,'auth','0001_initial','2019-12-20 01:24:17.225351'),(4,'Users','0001_initial','2019-12-20 01:25:20.438228'),(5,'Users','0002_delete_role_resource','2019-12-20 01:25:20.642000'),(6,'Users','0003_auto_20191214_1646','2019-12-20 01:25:32.902284'),(7,'admin','0001_initial','2019-12-20 01:26:10.285575'),(8,'admin','0002_logentry_remove_auto_add','2019-12-20 01:26:10.390442'),(9,'admin','0003_logentry_add_action_flag_choices','2019-12-20 01:26:10.406484'),(10,'contenttypes','0002_remove_content_type_name','2019-12-20 01:26:10.566464'),(11,'auth','0002_alter_permission_name_max_length','2019-12-20 01:26:10.680331'),(12,'auth','0003_alter_user_email_max_length','2019-12-20 01:26:10.735941'),(13,'auth','0004_alter_user_username_opts','2019-12-20 01:26:10.751352'),(14,'auth','0005_alter_user_last_login_null','2019-12-20 01:26:10.809001'),(15,'auth','0006_require_contenttypes_0002','2019-12-20 01:26:10.815136'),(16,'auth','0007_alter_validators_add_error_messages','2019-12-20 01:26:10.833338'),(17,'auth','0008_alter_user_username_max_length','2019-12-20 01:26:10.896278'),(18,'auth','0009_alter_user_last_name_max_length','2019-12-20 01:26:10.954438'),(19,'auth','0010_alter_group_name_max_length','2019-12-20 01:26:11.023519'),(20,'auth','0011_update_proxy_permissions','2019-12-20 01:26:11.050839'),(21,'sessions','0001_initial','2019-12-20 01:26:23.233372');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -445,7 +438,7 @@ CREATE TABLE `django_session` (
   `expire_date` datetime(6) NOT NULL,
   PRIMARY KEY (`session_key`),
   KEY `django_session_expire_date_a5c62663` (`expire_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -454,7 +447,6 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('0c2mshz9uk17zm7f36pjq27ipbcra0wu','ODFhOGMyZGVhOWQ3YzE2YWM3MzVhYTdkNDQ1MzJmZGI4NjViYTQ2Nzp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ZjAwMDRhZWQyNzEwODhmY2IyM2U5MDY2ZjZkODBhMWQyMDZjNTA0In0=','2020-01-01 00:09:03.831121');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -467,4 +459,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-18  6:31:03
+-- Dump completed on 2019-12-20  1:55:49

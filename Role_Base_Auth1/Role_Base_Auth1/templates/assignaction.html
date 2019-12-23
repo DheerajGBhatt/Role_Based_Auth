@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}<li>
+      {% endfor %}
+  </ul>
+{% endif %}
+    <div class="container" style = 'position:absolute;  right:0; left:35%;'>
+    <form method="POST" class="post-form" action = '.'>
+            {% csrf_token %}
+   <table>
+       <tr><td><label><b>Roles:</b></label></td>
+       {%  if form.roles1 %}
+       <td><select   name  =  "role" >
+            {% for j in form.roles1 %}
+            <option value = {{ j.id }} > {{ j.role_name }}</option>
+            {% endfor %}
+        </select></td></tr>
+        {% endif %}
+        <tr><td><label><b>Action:</b></label></td>
+       {%  if form.action1 %}
+       <td>
+            {% for j in form.action1 %}
+            {{ j.action_name }}<input type='checkbox' name='actions' value = {{ j.id }} ><br>
+            {% endfor %}
+        </td></tr>
+        {% endif %}
+
+       <tr><td></td><td><button style="color:blue" class="btn btn-outline-info" type="submit">Save</button></td></tr>
+    </table>
+
+    </form>
+   </div>
+{% endblock %}

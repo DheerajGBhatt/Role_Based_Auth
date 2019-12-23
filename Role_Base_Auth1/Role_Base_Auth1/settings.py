@@ -25,7 +25,7 @@ SECRET_KEY = 'u&s2_cqjyr4by6zifbd5-%+6jp(85^=*kto_e%o*!2=#)6kw-d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['DheerajBhatt.pythonanywhere.com']
 
 
 # Application definition
@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'livesync',
     'django.contrib.staticfiles',
-    'multiselectfield',
     'Roles',
     'Users'
 ]
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'Role_Base_Auth1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/blooms/Role_Base_Auth1/Role_Base_Auth1/templates/'],
+        'DIRS': ['/home/DheerajBhatt/Role_Based_Auth/Role_Base_Auth1/Role_Base_Auth1/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,11 +79,14 @@ WSGI_APPLICATION = 'Role_Base_Auth1.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE':'django.db.backends.mysql',
-            'NAME':'role_auth',
-            'USER':'root',
-            'PASSWORD':'',
-            'HOST':'localhost',
+            'NAME':'DheerajBhatt$role_auth',
+            'USER':'DheerajBhatt',
+            'PASSWORD':'dheeraj1234',
+            'HOST':'DheerajBhatt.mysql.pythonanywhere-services.com',
             'PORT':'',
+            'OPTIONS': {
+          'autocommit': True,
+        },
         }
 }
 
